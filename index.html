@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{overflow:hidden;background:linear-gradient(135deg,#ffd6e7,#ffc2d1);}
+.page{display:none;height:100vh;justify-content:center;align-items:center;flex-direction:column;text-align:center;padding:20px}
+.active{display:flex}
+h1,h2,p{color:white;text-shadow:1px 1px 8px rgba(0,0,0,.2)}
+button{padding:12px 28px;border:none;border-radius:30px;cursor:pointer;margin-top:20px;font-size:18px}
+input{padding:12px;border-radius:20px;border:none;text-align:center}
+.lock,.gift{font-size:100px;animation:bounce 1.5s infinite}
+img{max-width:320px;border-radius:20px;box-shadow:0 0 20px rgba(255,255,255,.8)}
+#hearts span{position:absolute;color:white;animation:float 8s linear infinite}
+@keyframes bounce{50%{transform:translateY(-15px)}}
+@keyframes float{from{transform:translateY(100vh)}to{transform:translateY(-100px)}}
+.cake{font-size:80px;animation:bounce 2s infinite}
+#typing{min-height:80px}
+</style>
+</head>
+<body>
+
+<div id="hearts"></div>
+
+<div class="page active" id="p1">
+<div class="lock">🔒</div>
+<h1>Enter Password</h1>
+<input id="pass" type="password" placeholder="Password">
+<button onclick="unlock()">Unlock ❤️</button>
+</div>
+
+<div class="page" id="p2">
+<div class="cake">🎂</div>
+<h1 id="typing"></h1>
+<h2>My Sweet Boy ❤️</h2>
+<button onclick="showPage(3)">Next ➜</button>
+</div>
+
+<div class="page" id="p3">
+<h1>💖 SORRY 💖</h1>
+<p style="max-width:800px;font-size:24px">
+Sorry Sorry Sorry Sorry Sorry Sorry Sorry Sorry Sorry Sorry<br>
+Sorry × 10000 ❤️
+</p>
+<button onclick="showPage(4)">Next ➜</button>
+</div>
+
+<div class="page" id="p4">
+<h1>❤️ For You ❤️</h1>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDZ0PLCbGXOfzzyjLrG2a6taSA4ArlkKz6aw&s">
+<button onclick="song()">🎵 Your Favourite Song</button>
+</div>
+
+<div class="page" id="p5">
+<div class="gift" onclick="showPage(6)">🎁</div>
+<h2>Click The Gift Box ❤️</h2>
+</div>
+
+<div class="page" id="p6">
+<h1>🎁 Your Gift 🎁</h1>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW5R9n-yvalMEnNDqLNg0dbJfZfWFdbd6x4A&s">
+<h2 style="margin-top:20px">Thank You For Being In My Life ❤️</h2>
+<p>You are my favourite person forever 💕</p>
+</div>
+
+<script>
+for(let i=0;i<40;i++){
+ let s=document.createElement('span');
+ s.innerHTML='❤';
+ s.style.left=Math.random()*100+'%';
+ s.style.fontSize=(15+Math.random()*25)+'px';
+ s.style.animationDuration=(5+Math.random()*5)+'s';
+ document.getElementById('hearts').appendChild(s);
+}
+
+function showPage(n){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('p'+n).classList.add('active');
+}
+
+function unlock(){
+ if(document.getElementById('pass').value==='2107'){
+   showPage(2);
+   typeWriter();
+ }else{
+   alert('Wrong Password ❤️');
+ }
+}
+
+let started=false;
+function typeWriter(){
+ if(started) return;
+ started=true;
+ let txt="🎂 Happiest 21st Birthday My Sweet Boy ❤️";
+ let i=0;
+ let el=document.getElementById('typing');
+ let t=setInterval(()=>{
+   el.innerHTML+=txt.charAt(i);
+   i++;
+   if(i>=txt.length) clearInterval(t);
+ },80);
+}
+
+function song(){
+ window.open('https://www.youtube.com/watch?v=WKbwopSXLWU','_blank');
+ showPage(5);
+}
+</script>
+</body>
+</html>
